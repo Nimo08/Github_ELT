@@ -27,6 +27,6 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v5
               with:
-              context: .
-              push: true
-              tags: ${{ vars.DOCKERHUB_USERNAME }}/github_elt:latest
+                context: .
+                push: true
+                tags: ${{ vars.DOCKERHUB_USERNAME }}/github_elt:latest
