@@ -13,12 +13,15 @@ headers = {
     "Accept": "application/vnd.github.v3+json"
 }
 
+org_name = "openai"
+repo_name = "codex"
+
 
 # Print the repo names on the terminal
 def get_repo():
     
     try:
-        org_name = "openai"
+        # org_name = "openai"
         url = f"https://api.github.com/orgs/{org_name}/repos"
 
         response = requests.get(url)
@@ -41,8 +44,8 @@ def get_repo():
 def get_commits():
 
     try:
-        org_name = "openai"
-        repo_name = "codex"
+        # org_name = "openai"
+        # repo_name = "codex"
         url = f"https://api.github.com/repos/{org_name}/{repo_name}/commits"
         
         response = requests.get(url)
@@ -63,8 +66,8 @@ def get_commits():
 def get_pull_requests():
 
     try:
-        org_name = "openai"
-        repo_name = "codex"
+        # org_name = "openai"
+        # repo_name = "codex"
         url = f"https://api.github.com/repos/{org_name}/{repo_name}/pulls"
         
         response = requests.get(url)
@@ -85,8 +88,8 @@ def get_pull_requests():
 def get_issues():
 
     try:
-        org_name = "openai"
-        repo_name = "codex"
+        # org_name = "openai"
+        # repo_name = "codex"
         url = f"https://api.github.com/repos/{org_name}/{repo_name}/issues"
         
         response = requests.get(url)
@@ -107,15 +110,15 @@ def get_issues():
 def get_forks():
 
     try:
-        org_name = "openai"
-        repo_name = "codex"
+        # org_name = "openai"
+        # repo_name = "codex"
         url = f"https://api.github.com/repos/{org_name}/{repo_name}/forks"
         
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
 
-        forks = [fork["name"] for fork in data]
+        # forks = [fork["name"] for fork in data]
 
         # for name in forks:
         #     print(f" - {name}")
