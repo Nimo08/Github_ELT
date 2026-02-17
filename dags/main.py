@@ -1,9 +1,8 @@
-from airflow import DAG
 from airflow.decorators import dag, task
 from airflow.providers.standard.operators.empty import EmptyOperator
 import pendulum
 from datetime import datetime, timedelta
-from api.repo_stats import get_repo, get_commits, get_pull_requests, get_forks, get_issues
+from api.repo_stats import get_repo, get_commits, get_pull_requests, get_forks, get_issues, save_to_json
 
 
 # Define the local timezone
@@ -53,15 +52,31 @@ def github_extraction_dag():
     def extract_forks():
         return get_forks()
 
+    @task
+    def save_data(repos, commits, pull_requests, issues, forks):
+        save_to_json(
+            repos=repos,
+            commits=commits,
+            pull_requests=pull_requests,
+            issues=issues,
+            forks=forks,
+        )
+
+
     # Define task dependencies
     repo_names = extract_repo()
 
     # Run extractions in parallel
     commits = extract_commits()
-    prs = extract_pull_requests()
+    pull_requests = extract_pull_requests()
     issues = extract_issues()
     forks = extract_forks()
 
+    save_data(repos=repo_names,
+              commits=commits,
+              pull_requests=pull_requests,
+              issues=issues,
+              forks=forks)
 
 github_extraction_dag()
 
