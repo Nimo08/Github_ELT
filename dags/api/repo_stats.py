@@ -132,7 +132,7 @@ def get_forks():
 def save_to_json(**data):
 
     for key, value in data.items():
-        file_path = f"./data/github_{key}.{datetime.today()}.json"
+        file_path = f"/opt/airflow/data/github_{key}.{datetime.today()}.json"
         # try:
         with open(file_path, "w",encoding="utf-8") as json_file:
             json.dump(value, json_file, indent=4, ensure_ascii=False)
